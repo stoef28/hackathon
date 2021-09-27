@@ -1,13 +1,20 @@
 package ch.zuehlke.fullstack.hackathon.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Category {
 
+    @Id
+    @GeneratedValue
+    private Long categoryID;
+
     private String name;
-    private Long id;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private Collection<Interest> interestCollection;
+
 
     public String getName() {
         return name;
@@ -17,12 +24,15 @@ public class Category {
         this.name = name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public Long getCategoryID() {
+        return categoryID;
+    }
+
+    public Collection<Interest> getInterestCollection() {
+        return interestCollection;
     }
 }

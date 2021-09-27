@@ -1,14 +1,27 @@
 package ch.zuehlke.fullstack.hackathon.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Location {
 
-    private String name;
-    private Long id;
+    @Id
+    @GeneratedValue
+    private Long locationID;
 
+    private String zip;
+    private String name;
+
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
     public String getName() {
         return name;
@@ -18,12 +31,11 @@ public class Location {
         this.name = name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLocationID(Long locationID) {
+        this.locationID = locationID;
     }
 
-    @Id
-    public Long getId() {
-        return id;
+    public Long getLocationID() {
+        return locationID;
     }
 }
