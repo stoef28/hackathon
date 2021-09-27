@@ -1,23 +1,23 @@
 package ch.zuehlke.fullstack.hackathon.service;
 
-import ch.zuehlke.fullstack.hackathon.model.*;
+import ch.zuehlke.fullstack.hackathon.model.Interest;
+import ch.zuehlke.fullstack.hackathon.model.User;
 import ch.zuehlke.fullstack.hackathon.service.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.FindException;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-
     public User getUserBy(long id) {
-        return userRepository.findById(id).orElseThrow( () -> new FindException());
+        return userRepository.findById(id).orElseThrow(FindException::new);
     }
 
     public User addInterestToUser(Interest interest, User user) {
@@ -30,7 +30,7 @@ public class UserService {
 
     public User removeInterestFromUser(Interest interest, User user) {
         Collection<Interest> interestCollection = user.getInterestCollection();
-        interestCollection = interestCollection.stream().filter(interestIter -> interestIter.getInterestID() != interest.getInterestID()).collect(Collectors.toList());
+        interestCollection = interestCollection.stream().filter(interestIter -> !interestIter.getInterestID().equals(interest.getInterestID())).collect(Collectors.toList());
         user.setInterestCollection(interestCollection);
 
         return userRepository.save(user);
