@@ -1,6 +1,5 @@
 package ch.zuehlke.fullstack.hackathon.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -24,6 +23,6 @@ public class InsightClientConfiguration {
                 .basicAuthentication(username, password)
                 .uriTemplateHandler(new DefaultUriBuilderFactory("https://insight.zuehlke.com/api/v1/"))
                 .build();
-        return new InsightClient(restTemplate, new ObjectMapper());
+        return new InsightClient(restTemplate);
     }
 }
