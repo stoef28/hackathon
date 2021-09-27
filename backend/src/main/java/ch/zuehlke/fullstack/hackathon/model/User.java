@@ -4,7 +4,7 @@ public class User {
 
     private String name;
     private String picture;
-
+    private String code;
 
     public String getName() {
         return name;
@@ -20,5 +20,13 @@ public class User {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
