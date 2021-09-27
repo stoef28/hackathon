@@ -12,4 +12,8 @@ public class InsightClient {
     public InsightUserData getInsightUserData(User user) {
         return restTemplate.getForObject("employees/" + user.getCode(), InsightUserData.class);
     }
+
+    public byte[] getInsightProfilePicture(User user) {
+        return restTemplate.getForObject("/pictures/" + user.getPictureId(), byte[].class);
+    }
 }

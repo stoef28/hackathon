@@ -12,7 +12,6 @@ public class User {
     @GeneratedValue
     private Long userID;
 
-    private String name;
     private String pictureId;
     private String code;
 
