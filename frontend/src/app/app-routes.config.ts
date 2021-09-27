@@ -6,9 +6,9 @@ export const routes: Routes = [
     redirectTo: "/user-profile",
     pathMatch: 'full'
   },
-	{
-		path: "user-profile",
-		loadChildren: () =>
-			import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule)
-	}
+  {
+    path: "user-profile",
+    loadChildren: () =>
+      import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule)
+  }
 ];
