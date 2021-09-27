@@ -1,0 +1,19 @@
+.mat-nav-list {
+  padding: 0;
+  .mat-list-item {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: unset !important;
+}
+
+.mat-list-item:hover {
+  background: #cccccc;
+}
+
+.mat-menu-item:hover:not([disabled]) {
+  background: #cccccc;
+}
