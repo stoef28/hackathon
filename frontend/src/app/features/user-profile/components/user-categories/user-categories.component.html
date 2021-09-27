@@ -1,0 +1,13 @@
+<div>
+  <h2>Interests</h2>
+  <ng-container *ngFor="let category of categories">
+    <div>
+      <h3>{{category.name}}</h3>
+      <div>
+        <ng-container *ngFor="let interest of category.interests">
+          <p>{{interest.name}}</p>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
