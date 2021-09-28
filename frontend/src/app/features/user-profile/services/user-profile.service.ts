@@ -19,8 +19,8 @@ export class UserProfileService {
         1,
         new InsightAddress("Musterstrasse 1", "8000", "Zuerich", "Schweiz"),
         [
-          new Category(1, "sports",[new Interest(1, "soccer"), new Interest(2, "tennis")]),
-          new Category(2, "music",[new Interest(3, "trumpet"), new Interest(4, "trombone")])
+          new Category(1, "Sports",[new Interest(1, "Soccer"), new Interest(2, "Tennis")]),
+          new Category(2, "Music",[new Interest(3, "Trumpet"), new Interest(4, "Trombone")])
         ]
       )
     ); // TODO: replace
