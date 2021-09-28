@@ -33,4 +33,10 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping("/{code}/interests/{interestId}")
+    public ResponseEntity removeInterestFromUser(@PathVariable String code, @PathVariable Long interestId){
+        interestService.removeInterestFromUser(code, interestId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

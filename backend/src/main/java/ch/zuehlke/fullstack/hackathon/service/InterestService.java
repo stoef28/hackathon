@@ -40,6 +40,12 @@ public class InterestService {
         create(interest);
     }
 
+    public void removeInterestFromUser(String code, Long interestId){
+        User user = userService.getUserBy(code);
+        Interest interest = getInterestBy(interestId);
+        userService.removeInterestFromUser(interest, user);
+    }
+
     private Interest createInterestObject(AddInterestDto addInterestDto, User user) {
         Category category = categoryService.getCategoryBy(addInterestDto.getCategoryId());
         Interest interest = new Interest();
