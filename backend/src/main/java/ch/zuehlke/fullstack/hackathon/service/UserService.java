@@ -63,4 +63,8 @@ public class UserService {
         return getUserWithAddress(loginService.getLoggedInUserCode());
     }
 
+    public Collection<User> getAll() {
+        return userRepository.findAll();
+    }
+
 }
