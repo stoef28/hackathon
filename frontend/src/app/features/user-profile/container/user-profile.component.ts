@@ -4,7 +4,6 @@ import {User} from "@base/shared/models/user";
 import {Category} from "@base/shared/models/category";
 import {CategoryService} from "@base/shared/services/category.service";
 import {AddInterest} from "@base/shared/models/add-interest";
-import {InterestService} from "@base/shared/services/interest.service";
 
 @Component({
 	selector: "app-user-profile",
@@ -17,20 +16,19 @@ export class UserProfileComponent implements OnInit {
   allCategories!: Category[];
 
   constructor(private userProfileService: UserProfileService,
-              private categoryService: CategoryService,
-              private interestService: InterestService) {
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    this.userProfileService.getCurrentlyLoggedInUser().subscribe(user => this.user = user);
+    this.userProfileService.getUserByCode(this.user.code).subscribe(user => this.user = user);
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }
 
   addInterest(addInterest: AddInterest) {
-    this.interestService.addInterest(addInterest);
+    this.userProfileService.addInterest(this.user.code, addInterest);
   }
 
   removeInterest(id: number) {
-    this.interestService.removeInterest(id);
+    this.userProfileService.removeInterest(this.user.code, id);
   }
 }
