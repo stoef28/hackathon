@@ -1,17 +1,26 @@
 package ch.zuehlke.fullstack.hackathon.service;
 
 import ch.zuehlke.fullstack.hackathon.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Component
+@Service
+@AllArgsConstructor
 public class FilterUserService {
 
-    @Autowired
     private UserService userService;
+
+    public Collection<User> filter(Integer[] interests) {
+        return filter(interests, 0);
+    }
+
+    public Collection<User> filter(int locationID) {
+        return filter(null, locationID);
+    }
 
     public Collection<User> filter(Integer[] interests, int locationID) {
         Collection<User> userCollection = userService.getAll();
@@ -25,9 +34,8 @@ public class FilterUserService {
         if (locationID <= 0)
             return userCollection;
 
-        return userCollection.stream()
-                .filter(user -> user.getLocation().getLocationID()==locationID)
-                .collect(Collectors.toList());
+        // TODO filtern nach location
+        return userCollection;
     }
 
     private Collection<User> filterByInterests(Collection<User> userCollection, Integer[] interests) {
@@ -35,7 +43,11 @@ public class FilterUserService {
             return userCollection;
 
         return userCollection.stream()
-                .filter(user -> !user.getInterestCollection().stream().filter(interest -> true).collect(Collectors.toList()).isEmpty())
+                .filter(
+                        user -> user.getInterests().stream()
+                                .filter(interest -> Arrays.asList(interests).contains(interest.getInterestID()))
+                                .count() > 0
+                )
                 .collect(Collectors.toList());
     }
 }
