@@ -11,4 +11,8 @@ export class InterestService {
   public addInterest(addInterest: AddInterest): void {
     // TODO: implement
   }
+
+  public removeInterest(id: number): void {
+    // TODO: implement
+  }
 }

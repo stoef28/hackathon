@@ -29,4 +29,8 @@ export class UserProfileComponent implements OnInit {
   addInterest(addInterest: AddInterest) {
     this.interestService.addInterest(addInterest);
   }
+
+  removeInterest(id: number) {
+    this.interestService.removeInterest(id);
+  }
 }

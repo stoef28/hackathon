@@ -10,12 +10,14 @@ import {IconsModule} from "@base/icons/icons.module";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ManualInterestAddingComponent} from "@base/features/user-profile/components/manual-interest-adding/manual-interest-adding.component";
+import {RemoveInterestComponent} from './components/remove-interest/remove-interest.component';
 
 @NgModule({
   declarations: [
     UserProfileComponent,
     UserCategoriesComponent,
-    ManualInterestAddingComponent
+    ManualInterestAddingComponent,
+    RemoveInterestComponent
   ],
   imports: [UserProfileRoutingModule, CommonModule, MatSelectModule, ReactiveFormsModule, FeatherModule, IconsModule, MatInputModule, MatButtonModule, FormsModule]
 })

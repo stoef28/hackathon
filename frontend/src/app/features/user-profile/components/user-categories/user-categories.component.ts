@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Category} from "@base/shared/models/category";
 
 @Component({
@@ -10,4 +10,11 @@ export class UserCategoriesComponent {
 
   @Input()
   categories!: Category[];
+
+  @Output()
+  interestRemoved = new EventEmitter<number>();
+
+  removeInterest(id: number) {
+    this.interestRemoved.emit(id);
+  }
 }
