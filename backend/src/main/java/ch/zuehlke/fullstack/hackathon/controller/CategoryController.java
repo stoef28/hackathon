@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("api/categories")
 @AllArgsConstructor
-public class InterestController {
+public class CategoryController {
 
     private CategoryService categoryService;
 

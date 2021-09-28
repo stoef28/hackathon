@@ -1,19 +1,21 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Category} from "@base/shared/models/category";
-import {Interest} from "@base/shared/models/interest";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor() { }
+  private readonly backendUrl = "http://localhost:8080";
+  private readonly resourcePath = "/api/categories";
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   public getAllCategories(): Observable<Category[]> {
-    return of([
-      new Category(1, "sports",[new Interest(1, "soccer"), new Interest(2, "tennis"), new Interest(3, "skiing"), new Interest(4, "snowboarding")]),
-      new Category(2, "music",[new Interest(5, "trumpet"), new Interest(6, "trombone")])
-    ]); // TODO: replace
+    const url = `${this.backendUrl}${this.resourcePath}`;
+    return this.httpClient.get<Category[]>(url);
   }
 }

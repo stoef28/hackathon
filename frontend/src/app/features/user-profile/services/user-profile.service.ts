@@ -1,28 +1,33 @@
 import {Injectable} from "@angular/core";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {User} from "@base/shared/models/user";
-import {Category} from "@base/shared/models/category";
+import {HttpClient} from "@angular/common/http";
+import {AddInterestDto} from "@base/shared/models/add-interest-dto";
 import {Interest} from "@base/shared/models/interest";
-import {InsightAddress} from "@base/shared/models/insight-address";
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserProfileService {
 
-  public getCurrentlyLoggedInUser(): Observable<User> {
-    return of(
-      new User(
-        "mamu",
-        "Max",
-        "Mustermann",
-        1,
-        new InsightAddress("Musterstrasse 1", "8000", "Zuerich", "Schweiz"),
-        [
-          new Category(1, "Sports",[new Interest(1, "Soccer"), new Interest(2, "Tennis")]),
-          new Category(2, "Music",[new Interest(3, "Trumpet"), new Interest(4, "Trombone")])
-        ]
-      )
-    ); // TODO: replace
+  private readonly backendUrl = "http://localhost:8080";
+  private readonly resourcePath = "/api/users";
+
+  constructor(private httpClient: HttpClient) {
+  }
+
+  public getUserByCode(userCode: string): Observable<User> {
+    const url = `${this.backendUrl}${this.resourcePath}/${userCode}`;
+    return this.httpClient.get<User>(url);
+  }
+
+  public addInterest(userCode: string, addInterest: AddInterestDto): Observable<Interest> {
+    const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests`;
+    return this.httpClient.post<Interest>(url, addInterest);
+  }
+
+  public removeInterest(userCode: string, id: number): Observable<void> {
+    const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests/${id}`;
+    return this.httpClient.delete<void>(url);
   }
 }
