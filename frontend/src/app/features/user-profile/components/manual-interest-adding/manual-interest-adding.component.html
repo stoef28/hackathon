@@ -26,7 +26,7 @@
           <mat-option *ngFor="let category of allCategories" [value]="category.name">{{category.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button (click)="addNewInterest()" mat-raised-button>Add Interest</button>
+      <button (click)="addNewInterest()" class="add-interest-button" mat-raised-button>Add Interest</button>
     </div>
     <p *ngIf="showErrorMessage" class="error-message">Neither field must be empty</p>
   </div>

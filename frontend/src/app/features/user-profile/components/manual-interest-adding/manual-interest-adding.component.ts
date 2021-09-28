@@ -49,6 +49,7 @@ export class ManualInterestAddingComponent {
         );
         this.interestAdded.emit(addInterest);
       }
+      this.interests = new FormControl();
     }
   }
 
