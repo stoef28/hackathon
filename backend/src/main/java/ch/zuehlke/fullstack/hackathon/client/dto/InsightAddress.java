@@ -1,9 +1,11 @@
 package ch.zuehlke.fullstack.hackathon.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class InsightAddress {
     @JsonProperty("Street")
     private String street;

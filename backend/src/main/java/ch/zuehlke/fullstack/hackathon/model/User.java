@@ -21,7 +21,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "hasSkills",
+            name = "hasInterests",
             joinColumns = @JoinColumn(name = "userID", referencedColumnName = "userID"),
             inverseJoinColumns = @JoinColumn(name = "interestID", referencedColumnName = "interestID"))
     private Collection<Interest> interestCollection;
