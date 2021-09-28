@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 class="big-title">Interests</h2>
+  <ng-container *ngFor="let category of categories">
+    <div>
+      <h3 class="small-title">{{category.name}}</h3>
+      <div class="interests-container">
+        <ng-container *ngFor="let interest of category.interests">
+          <div class="interest-container">
+            <div class="interest-border">
+              <p class="interest">{{interest.name}}</p>
+              <app-remove-interest [interest]="interest" (interestRemoved)="removeInterest($event)"></app-remove-interest>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>

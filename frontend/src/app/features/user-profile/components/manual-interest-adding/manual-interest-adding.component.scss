@@ -1,0 +1,39 @@
+.container {
+  margin-top: 1.5rem;
+}
+
+.category {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.mat-form-field {
+  width: 30rem;
+}
+
+.new-interests-title {
+  margin-top: 0.5rem;
+}
+
+.plus-circle:hover {
+  cursor: pointer;
+}
+
+.new-interest-container {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+}
+
+.add-interests-button {
+  margin-left: 1rem;
+}
+
+.add-interest-button {
+  width: 7rem;
+}
+
+.error-message {
+  color: red;
+}
