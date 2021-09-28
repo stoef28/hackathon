@@ -2,7 +2,8 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {User} from "@base/shared/models/user";
 import {HttpClient} from "@angular/common/http";
-import {AddInterest} from "@base/shared/models/add-interest";
+import {AddInterestDto} from "@base/shared/models/add-interest-dto";
+import {Interest} from "@base/shared/models/interest";
 
 @Injectable({
   providedIn: 'root',
@@ -20,13 +21,13 @@ export class UserProfileService {
     return this.httpClient.get<User>(url);
   }
 
-  public addInterest(userCode: string, addInterest: AddInterest): Observable<any> {
+  public addInterest(userCode: string, addInterest: AddInterestDto): Observable<Interest> {
     const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests`;
-    return this.httpClient.post<User>(url, addInterest);
+    return this.httpClient.post<Interest>(url, addInterest);
   }
 
-  public removeInterest(userCode: string, id: number): Observable<any> {
+  public removeInterest(userCode: string, id: number): Observable<void> {
     const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests/${id}`;
-    return this.httpClient.delete<User>(url);
+    return this.httpClient.delete<void>(url);
   }
 }

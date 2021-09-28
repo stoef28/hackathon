@@ -36,7 +36,7 @@ public class InterestService {
             return InterestMapper.toInterestDto(create(interest));
         }
         Interest interest = interestRepository.findById(addInterestDto.getId()).get();
-        if (interest.getUserCollection().contains(user)) {
+        if (!interest.getUserCollection().contains(user)) {
             interest.getUserCollection().add(user);
             return InterestMapper.toInterestDto(create(interest));
         }

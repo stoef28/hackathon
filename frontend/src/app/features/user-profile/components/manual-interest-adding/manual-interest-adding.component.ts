@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Category} from "@base/shared/models/category";
 import {FormControl} from "@angular/forms";
-import {AddInterest} from "@base/shared/models/add-interest";
+import {AddInterestDto} from "@base/shared/models/add-interest-dto";
 
 @Component({
   selector: 'app-manual-interest-adding',
@@ -28,7 +28,7 @@ export class ManualInterestAddingComponent {
     const categoryName = this.category.value;
     const dataMissing = !this.newInterest || !categoryName;
     if (!dataMissing) {
-      const addInterest = new AddInterest(this.newInterest, this.getCategoryIdByCategoryName(categoryName));
+      const addInterest = new AddInterestDto(this.newInterest, this.getCategoryIdByCategoryName(categoryName));
       this.interestAdded.emit(addInterest);
       this.newInterest = "";
       this.category = new FormControl();
@@ -42,7 +42,7 @@ export class ManualInterestAddingComponent {
     const interestNames = this.interests.value;
     if (interestNames) {
       for (const interestName of interestNames) {
-        const addInterest = new AddInterest(
+        const addInterest = new AddInterestDto(
           interestName,
           this.getCategoryIdByInterestName(interestName),
           this.getInterestIdByInterestName(interestName)
