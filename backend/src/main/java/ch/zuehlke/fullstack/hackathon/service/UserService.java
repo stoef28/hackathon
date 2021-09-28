@@ -26,6 +26,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(FindException::new);
     }
 
+    public User getUserBy(String code){
+        return userRepository.getUserByCode(code);
+    }
+
     public User addInterestToUser(Interest interest, User user) {
         Collection<Interest> interests = user.getInterests();
         interests.add(interest);

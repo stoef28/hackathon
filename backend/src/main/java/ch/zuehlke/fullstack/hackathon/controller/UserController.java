@@ -1,13 +1,13 @@
 package ch.zuehlke.fullstack.hackathon.controller;
 
+import ch.zuehlke.fullstack.hackathon.controller.dto.AddInterestDto;
 import ch.zuehlke.fullstack.hackathon.controller.dto.UserWithInsightData;
+import ch.zuehlke.fullstack.hackathon.service.InterestService;
 import ch.zuehlke.fullstack.hackathon.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -15,15 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private UserService userService;
+    private InterestService interestService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserWithInsightData> getUser(@PathVariable(name = "id") String code){
+    @GetMapping("/{code}")
+    public ResponseEntity<UserWithInsightData> getUser(@PathVariable String code){
         return ResponseEntity.ok(userService.getUserWithAddress(code));
     }
 
-    @GetMapping("/{id}/picture")
-    public ResponseEntity<String> getUserProfilePicture(@PathVariable(name = "id") String code){
+    @GetMapping("/{code}/picture")
+    public ResponseEntity<String> getUserProfilePicture(@PathVariable String code){
         return ResponseEntity.ok(userService.getProfilePictureOf(code));
+    }
+
+    @PostMapping("/{code}/interests")
+    public ResponseEntity addUserInterest(@PathVariable String code, @RequestBody AddInterestDto addInterestDto){
+        interestService.addInterestToUser(code, addInterestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
