@@ -1,9 +1,11 @@
 package ch.zuehlke.fullstack.hackathon.service;
 
 import ch.zuehlke.fullstack.hackathon.controller.dto.AddInterestDto;
+import ch.zuehlke.fullstack.hackathon.controller.dto.InterestDto;
 import ch.zuehlke.fullstack.hackathon.model.Category;
 import ch.zuehlke.fullstack.hackathon.model.Interest;
 import ch.zuehlke.fullstack.hackathon.model.User;
+import ch.zuehlke.fullstack.hackathon.service.mapper.InterestMapper;
 import ch.zuehlke.fullstack.hackathon.service.repository.InterestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,17 +29,18 @@ public class InterestService {
         return interestRepository.save(interest);
     }
 
-    public void addInterestToUser(String code, AddInterestDto addInterestDto) {
+    public InterestDto addInterestToUser(String code, AddInterestDto addInterestDto) {
         User user = userService.getUserBy(code);
         if (addInterestDto.getId() == null || interestRepository.findById(addInterestDto.getId()).isEmpty()) {
             Interest interest = createInterestObject(addInterestDto, user);
-            create(interest);
-            return;
+            return InterestMapper.toInterestDto(create(interest));
         }
         Interest interest = interestRepository.findById(addInterestDto.getId()).get();
-        interest.getUserCollection().add(user);
-
-        create(interest);
+        if (interest.getUserCollection().contains(user)) {
+            interest.getUserCollection().add(user);
+            return InterestMapper.toInterestDto(create(interest));
+        }
+        return InterestMapper.toInterestDto(interest);
     }
 
     public void removeInterestFromUser(String code, Long interestId){

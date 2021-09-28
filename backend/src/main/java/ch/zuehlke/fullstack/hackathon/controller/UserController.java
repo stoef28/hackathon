@@ -1,6 +1,7 @@
 package ch.zuehlke.fullstack.hackathon.controller;
 
 import ch.zuehlke.fullstack.hackathon.controller.dto.AddInterestDto;
+import ch.zuehlke.fullstack.hackathon.controller.dto.InterestDto;
 import ch.zuehlke.fullstack.hackathon.controller.dto.UserWithInsightData;
 import ch.zuehlke.fullstack.hackathon.service.InterestService;
 import ch.zuehlke.fullstack.hackathon.service.UserService;
@@ -28,9 +29,8 @@ public class UserController {
     }
 
     @PostMapping("/{code}/interests")
-    public ResponseEntity addUserInterest(@PathVariable String code, @RequestBody AddInterestDto addInterestDto){
-        interestService.addInterestToUser(code, addInterestDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<InterestDto> addUserInterest(@PathVariable String code, @RequestBody AddInterestDto addInterestDto){
+        return ResponseEntity.ok(interestService.addInterestToUser(code, addInterestDto));
     }
 
     @DeleteMapping("/{code}/interests/{interestId}")
