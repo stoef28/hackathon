@@ -23,4 +23,7 @@ export class UserProfileComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }
 
+  addInterest($event: any) {
+    // TODO: implement
+  }
 }

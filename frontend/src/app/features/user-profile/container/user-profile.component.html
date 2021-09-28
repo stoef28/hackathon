@@ -1,5 +1,5 @@
 <div>
   <h1>{{user.name}}</h1>
   <app-user-categories [categories]="user.categories"></app-user-categories>
-  <app-manual-interest-adding [allCategories]="allCategories"></app-manual-interest-adding>
+  <app-manual-interest-adding [allCategories]="allCategories" (interestAdded)="addInterest($event)"></app-manual-interest-adding>
 </div>
