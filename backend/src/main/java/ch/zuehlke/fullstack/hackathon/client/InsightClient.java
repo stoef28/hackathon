@@ -13,6 +13,10 @@ public class InsightClient {
         return restTemplate.getForObject("employees/" + user.getCode(), InsightUserData.class);
     }
 
+    public InsightUserData[] getAllInsightUsers() {
+        return restTemplate.getForObject("employees/", InsightUserData[].class);
+    }
+
     public byte[] getInsightProfilePicture(String pictureID) {
         return restTemplate.getForObject("/pictures/" + pictureID, byte[].class);
     }

@@ -29,6 +29,14 @@ public class InsightService {
         return insightUserData;
     }
 
+    public List<InsightUserData> getAllInsightUsers(){
+        List<InsightUserData> allInsightUsers = List.of(insightClient.getAllInsightUsers());
+        for (InsightUserData insightUser : allInsightUsers) {
+            insightUser.setInsightAddress(generateRandomInsightAddress());
+        }
+        return allInsightUsers;
+    }
+
     public String getInsightProfilePicture(InsightUserData insightUserData) {
         byte[] insightProfilePicture = insightClient.getInsightProfilePicture(insightUserData.getPictureId());
         return Base64.getEncoder().encodeToString(insightProfilePicture);
