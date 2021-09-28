@@ -1,34 +1,41 @@
 import {Category} from "@base/shared/models/category";
+import {InsightAddress} from "@base/shared/models/insight-address";
 
 export class User {
-  private readonly _id: number;
   private readonly _code: string;
-  private readonly _name: string;
-  private readonly _picture; // TODO: set type to JPEG
+  private readonly _firstName: string;
+  private readonly _lastName: string;
+  private readonly _pictureId: number;
+  private readonly _insightAddress: InsightAddress;
   private readonly _categories: Category[];
 
-  constructor(id: number, code: string, name: string, picture: any, categories: Category[]) {
-    this._id = id;
+  constructor(code: string, firstName: string, lastName: string, pictureId: number, insightAddress: InsightAddress, categories: Category[]) {
     this._code = code;
-    this._name = name;
-    this._picture = picture;
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._pictureId = pictureId;
+    this._insightAddress = insightAddress;
     this._categories = categories;
-  }
-
-  get id(): number {
-    return this._id;
   }
 
   get code(): string {
     return this._code;
   }
 
-  get name(): string {
-    return this._name;
+  get firstName(): string {
+    return this._firstName;
   }
 
-  get picture() {
-    return this._picture;
+  get lastName(): string {
+    return this._lastName;
+  }
+
+  get pictureId(): number {
+    return this._pictureId;
+  }
+
+  get insightAddress(): InsightAddress {
+    return this._insightAddress;
   }
 
   get categories(): Category[] {

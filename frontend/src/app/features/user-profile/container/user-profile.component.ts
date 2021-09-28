@@ -7,7 +7,7 @@ import {AddInterest} from "@base/shared/models/add-interest";
 import {InterestService} from "@base/shared/services/interest.service";
 
 @Component({
-	selector: "user-profile",
+	selector: "app-user-profile",
 	templateUrl: "./user-profile.component.html",
 	styleUrls: ["./user-profile.component.scss"]
 })
