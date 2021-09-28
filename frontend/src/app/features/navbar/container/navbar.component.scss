@@ -11,9 +11,13 @@
 }
 
 .mat-list-item:hover {
-  background: #cccccc;
+  background: #333333;
 }
 
 .mat-menu-item:hover:not([disabled]) {
-  background: #cccccc;
+  background: #333333;
+}
+
+.menu-item {
+  color: #eeeeee;
 }
