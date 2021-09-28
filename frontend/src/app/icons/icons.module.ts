@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 
 import {FeatherModule} from 'angular-feather';
-import {PlusCircle} from 'angular-feather/icons';
+import {PlusCircle, X} from 'angular-feather/icons';
 
 const icons = {
-  PlusCircle
+  PlusCircle,
+  X
 };
 
 @NgModule({
