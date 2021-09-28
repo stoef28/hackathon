@@ -78,4 +78,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<UserWithInsightData> getAllUsersWithInsightData() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> getUserWithAddress(user.getCode()))
+                .collect(Collectors.toList());
+    }
+
 }
