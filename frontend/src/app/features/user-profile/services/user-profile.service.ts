@@ -10,7 +10,7 @@ import {Interest} from "@base/shared/models/interest";
 export class UserProfileService {
 
   public getCurrentlyLoggedInUser(): Observable<User> {
-    return of(new User("Test user :D", "", [
+    return of(new User(1, "mamu", "Max Mustermann", "", [
       new Category(1, "sports",[new Interest(1, "soccer"), new Interest(2, "tennis")]),
       new Category(2, "music",[new Interest(3, "trumpet"), new Interest(4, "trombone")])
     ])); // TODO: replace
