@@ -1,0 +1,22 @@
+.container {
+  border-radius: 1rem;
+  background-color: #f5f5f5;
+  padding: 2rem;
+}
+
+.container:first-child {
+  padding-top: 0.5rem;
+}
+
+.container:last-child {
+  padding-bottom: 0.5rem;
+}
+
+.interests-container {
+  display: flex;
+}
+
+.interest {
+  margin-top: 0;
+  padding-right: 1rem;
+}
