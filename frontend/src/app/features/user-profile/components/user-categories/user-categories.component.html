@@ -1,11 +1,16 @@
 <div class="container">
-  <h2>Interests</h2>
+  <h2 class="big-title">Interests</h2>
   <ng-container *ngFor="let category of categories">
     <div>
-      <h3>{{category.name}}</h3>
+      <h3 class="small-title">{{category.name}}</h3>
       <div class="interests-container">
         <ng-container *ngFor="let interest of category.interests">
-          <p class="interest">{{interest.name}}</p>
+          <div class="interest-container">
+            <div class="interest-border">
+              <p class="interest">{{interest.name}}</p>
+              <i-feather class="close-icon" name="x"></i-feather>
+            </div>
+          </div>
         </ng-container>
       </div>
     </div>
