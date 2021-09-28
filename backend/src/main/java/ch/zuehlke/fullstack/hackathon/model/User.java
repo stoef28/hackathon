@@ -14,10 +14,6 @@ public class User {
 
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "locationID", referencedColumnName = "locationID")
-    private Location location;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "hasInterests",
