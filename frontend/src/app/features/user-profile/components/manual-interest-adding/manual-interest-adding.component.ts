@@ -25,10 +25,10 @@ export class ManualInterestAddingComponent {
   constructor() { }
 
   addNewInterest(): void {
-    const category = this.category.value;
-    const dataMissing = !this.newInterest || !category;
+    const categoryName = this.category.value;
+    const dataMissing = !this.newInterest || !categoryName;
     if (!dataMissing) {
-      const addInterest = new AddInterest(this.newInterest, this.getCategoryId(category));
+      const addInterest = new AddInterest(this.newInterest, this.getCategoryIdByCategoryName(categoryName));
       this.interestAdded.emit(addInterest);
       this.newInterest = "";
       this.category = new FormControl();
@@ -38,10 +38,46 @@ export class ManualInterestAddingComponent {
     }
   }
 
-  private getCategoryId(categoryName: string): number {
+  addInterests(): void {
+    const interestNames = this.interests.value;
+    if (interestNames) {
+      for (const interestName of interestNames) {
+        const addInterest = new AddInterest(
+          interestName,
+          this.getCategoryIdByInterestName(interestName),
+          this.getInterestIdByInterestName(interestName)
+        );
+        this.interestAdded.emit(addInterest);
+      }
+    }
+  }
+
+  private getCategoryIdByCategoryName(categoryName: string): number {
     for (let category of this.allCategories) {
       if (category.name === categoryName) {
         return category.id;
+      }
+    }
+    return -1;
+  }
+
+  private getCategoryIdByInterestName(interestName: string): number {
+    for (let category of this.allCategories) {
+      for (let interest of category.interests) {
+        if (interest.name === interestName) {
+          return category.id;
+        }
+      }
+    }
+    return -1;
+  }
+
+  private getInterestIdByInterestName(interestName: string): number {
+    for (let category of this.allCategories) {
+      for (let interest of category.interests) {
+        if (interest.name === interestName) {
+          return interest.id;
+        }
       }
     }
     return -1;
