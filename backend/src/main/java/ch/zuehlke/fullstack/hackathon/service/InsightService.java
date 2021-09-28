@@ -29,8 +29,8 @@ public class InsightService {
         return insightUserData;
     }
 
-    public byte[] getInsightProfilePicture(User user) {
-        return insightClient.getInsightProfilePicture(user);
+    public byte[] getInsightProfilePicture(InsightUserData insightUserData) {
+        return insightClient.getInsightProfilePicture(insightUserData.getPictureId());
     }
 
     private InsightAddress generateRandomInsightAddress() {

@@ -12,7 +12,6 @@ public class User {
     @GeneratedValue
     private Long userID;
 
-    private String pictureId;
     private String code;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,5 +23,5 @@ public class User {
             name = "hasInterests",
             joinColumns = @JoinColumn(name = "userID", referencedColumnName = "userID"),
             inverseJoinColumns = @JoinColumn(name = "interestID", referencedColumnName = "interestID"))
-    private Collection<Interest> interestCollection;
+    private Collection<Interest> interests;
 }
