@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Category} from "@base/shared/models/category";
 import {FormControl} from "@angular/forms";
+import {AddInterest} from "@base/shared/models/add-interest";
 
 @Component({
   selector: 'app-manual-interest-adding',
@@ -27,7 +28,8 @@ export class ManualInterestAddingComponent {
     const category = this.category.value;
     const dataMissing = !this.newInterest || !category;
     if (!dataMissing) {
-      this.interestAdded.emit({name: this.newInterest, categoryId: this.getCategoryId(category)});
+      const addInterest = new AddInterest(this.newInterest, this.getCategoryId(category));
+      this.interestAdded.emit(addInterest);
       this.newInterest = "";
       this.category = new FormControl();
       this.showErrorMessage = false;

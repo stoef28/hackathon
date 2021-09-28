@@ -3,6 +3,8 @@ import {UserProfileService} from "@base/features/user-profile/services/user-prof
 import {User} from "@base/shared/models/user";
 import {Category} from "@base/shared/models/category";
 import {CategoryService} from "@base/shared/services/category.service";
+import {AddInterest} from "@base/shared/models/add-interest";
+import {InterestService} from "@base/shared/services/interest.service";
 
 @Component({
 	selector: "user-profile",
@@ -15,7 +17,8 @@ export class UserProfileComponent implements OnInit {
   allCategories!: Category[];
 
   constructor(private userProfileService: UserProfileService,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private interestService: InterestService) {
   }
 
   ngOnInit(): void {
@@ -23,7 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }
 
-  addInterest($event: any) {
-    // TODO: implement
+  addInterest(addInterest: AddInterest) {
+    this.interestService.addInterest(addInterest);
   }
 }
