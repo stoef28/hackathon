@@ -7,10 +7,7 @@ import ch.zuehlke.fullstack.hackathon.model.Category;
 import ch.zuehlke.fullstack.hackathon.model.Interest;
 import ch.zuehlke.fullstack.hackathon.model.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UserWithInsightDataMapper {
 
@@ -40,7 +37,7 @@ public class UserWithInsightDataMapper {
             if (categoryMap.get(interest.getCategory()) == null) {
                 categoryMap.put(interest.getCategory(), List.of(interest));
             } else {
-                List<Interest> interests = categoryMap.get(interest.getCategory());
+                List<Interest> interests = new ArrayList(categoryMap.get(interest.getCategory())) ;
                 interests.add(interest);
                 categoryMap.put(interest.getCategory(), interests);
             }
