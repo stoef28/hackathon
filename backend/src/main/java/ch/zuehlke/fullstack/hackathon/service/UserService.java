@@ -19,6 +19,7 @@ public class UserService {
 
     private UserRepository userRepository;
     private InsightService insightService;
+    private LoginService loginService;
 
     public User getUserBy(long id) {
         return userRepository.findById(id).orElseThrow(FindException::new);
@@ -56,6 +57,10 @@ public class UserService {
         User user = userRepository.getUserByCode(code);
         InsightUserData insightUserData = insightService.getInsightUserData(user);
         return UserWithInsightDataMapper.mapToUserWithInsightData(insightUserData, user);
+    }
+
+    public UserWithInsightData getLoggedInUserWithAddress(){
+        return getUserWithAddress(loginService.getLoggedInUserCode());
     }
 
 }
