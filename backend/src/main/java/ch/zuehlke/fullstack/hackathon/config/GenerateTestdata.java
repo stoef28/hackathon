@@ -92,22 +92,22 @@ public class GenerateTestdata {
 
 
     private void createUsers() {
-        User user1 = getUser("geze", new int[]{1, 2, 3, 4});
+        User user1 = getUser("geze", new int[]{1, 2, 4, 5});
         userRepository.save(user1);
 
-        User user2 = getUser("steb", new int[]{1, 2, 3, 4});
+        User user2 = getUser("steb", new int[]{0, 3, 7, 13});
         userRepository.save(user2);
 
-        User user3 = getUser("jage", new int[]{1, 2, 3, 4});
+        User user3 = getUser("jage", new int[]{2, 7});
         userRepository.save(user3);
 
-        User user4 = getUser("lybo", new int[]{1, 2, 3, 4});
+        User user4 = getUser("lybo", new int[]{13});
         userRepository.save(user4);
 
-        User user5 = getUser("fapl", new int[]{1, 2, 3, 4});
+        User user5 = getUser("fapl", new int[]{0, 4, 14});
         userRepository.save(user5);
 
-        User user6 = getUser("ndu", new int[]{1, 2, 3, 4});
+        User user6 = getUser("ndu", new int[]{4, 14});
         userRepository.save(user6);
     }
 
