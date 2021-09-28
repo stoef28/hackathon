@@ -23,14 +23,15 @@ public class InsightService {
 
     public InsightUserData getInsightUserData(User user) {
         InsightUserData insightUserData = insightClient.getInsightUserData(user);
-        if (insightUserData.getInsightAddress().getCity() == null) {
+        if (insightUserData.getInsightAddress() == null) {
             insightUserData.setInsightAddress(generateRandomInsightAddress());
         }
         return insightUserData;
     }
 
-    public byte[] getInsightProfilePicture(InsightUserData insightUserData) {
-        return insightClient.getInsightProfilePicture(insightUserData.getPictureId());
+    public String getInsightProfilePicture(InsightUserData insightUserData) {
+        byte[] insightProfilePicture = insightClient.getInsightProfilePicture(insightUserData.getPictureId());
+        return Base64.getEncoder().encodeToString(insightProfilePicture);
     }
 
     private InsightAddress generateRandomInsightAddress() {
@@ -55,13 +56,13 @@ public class InsightService {
                 new InsightAddress("Espenstrasse 70", "8408", "Winterthur", "CH"),
                 new InsightAddress("Löwenstrasse 6", "8400", "Winterthur", "CH"),
                 new InsightAddress("St. Gallerstrasse 5", "8400", "Winterthur", "CH"),
-                new InsightAddress("Hörnlistrasse 65", "8400", "Witnerthur", "CH")));
+                new InsightAddress("Hörnlistrasse 65", "8400", "Winterthur", "CH")));
     }
 
     private void initAddressSimple() {
         addresses = new HashSet<>(Arrays.asList(
                 new InsightAddress("Bahnhofstrasse 23", "8000", "Zürich", "CH"),
-                new InsightAddress("Hörnlistrasse 65", "8400", "Witnerthur", "CH")));
+                new InsightAddress("Hörnlistrasse 65", "8400", "Winterthur", "CH")));
     }
 
 }

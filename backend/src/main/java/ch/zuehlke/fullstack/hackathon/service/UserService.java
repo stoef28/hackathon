@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.module.FindException;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -61,6 +62,12 @@ public class UserService {
 
     public UserWithInsightData getLoggedInUserWithAddress(){
         return getUserWithAddress(loginService.getLoggedInUserCode());
+    }
+
+    public String getProfilePictureOf(String code) {
+        User user = userRepository.getUserByCode(code);
+        InsightUserData insightUserData = insightService.getInsightUserData(user);
+        return insightService.getInsightProfilePicture(insightUserData);
     }
 
     public Collection<User> getAll() {
