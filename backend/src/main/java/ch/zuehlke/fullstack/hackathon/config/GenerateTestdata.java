@@ -107,8 +107,23 @@ public class GenerateTestdata {
         User user5 = getUser("fapl", new int[]{0, 4, 14});
         userRepository.save(user5);
 
-        User user6 = getUser("ndu", new int[]{4, 14});
+        User user6 = getUser("ndu", new int[]{4, 13, 14});
         userRepository.save(user6);
+
+        User user7 = getUser("sti", new int[]{7});
+        userRepository.save(user7);
+
+        User user8 = getUser("scsl", new int[]{3, 5, 8});
+        userRepository.save(user8);
+
+        User user9 = getUser("moal", new int[]{12, 5, 7});
+        userRepository.save(user9);
+
+        User user10 = getUser("kege", new int[]{4});
+        userRepository.save(user10);
+
+        User user11 = getUser("anha", new int[]{0, 3, 5, 10});
+        userRepository.save(user11);
     }
 
     private User getUser(String code, int[] interestListIndexes) {
