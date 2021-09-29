@@ -1,11 +1,11 @@
 import {Routes} from "@angular/router";
 import {FilterListPageComponent} from "@base/features/filter-list/components/filter-list-page/filter-list-page.component";
+import {LandingPageComponent} from "@base/features/home/landing-page/landing-page.component";
 
 export const routes: Routes = [
   {
     path: "",
-    redirectTo: "/user-profile",
-    pathMatch: 'full'
+    component: LandingPageComponent
   },
   {
     path: "user-profile",
