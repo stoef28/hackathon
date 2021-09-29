@@ -10,3 +10,8 @@ mat-form-field {
   margin-top: 25px;
   height: 100vh;
 }
+
+.mat-row:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
