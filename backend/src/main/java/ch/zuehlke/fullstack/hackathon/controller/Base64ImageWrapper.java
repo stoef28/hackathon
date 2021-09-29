@@ -5,6 +5,6 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class Picture {
-    private String picture;
+public class Base64ImageWrapper {
+    private String base64Image;
 }

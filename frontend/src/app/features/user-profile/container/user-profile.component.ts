@@ -37,8 +37,8 @@ export class UserProfileComponent implements OnInit {
       ]
     )
     this.userProfileService.getUserByCode(this.user.code).subscribe(user => this.user = user);
-    this.userProfileService.getProfilePicture(this.user.code).subscribe(base64Image => {
-      this.profilePicturePath = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64Image.picture);
+    this.userProfileService.getProfilePicture(this.user.code).subscribe(base64ImageWrapper => {
+      this.profilePicturePath = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64ImageWrapper.base64Image);
     });
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }

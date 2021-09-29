@@ -4,7 +4,7 @@ import {User} from "@base/shared/models/user";
 import {HttpClient} from "@angular/common/http";
 import {AddInterestDto} from "@base/shared/models/add-interest-dto";
 import {Interest} from "@base/shared/models/interest";
-import {PictureBase64} from "@base/features/user-profile/models/picture-base64";
+import {Base64ImageWrapper} from "@base/features/user-profile/models/base64-image-wrapper";
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +32,8 @@ export class UserProfileService {
     return this.httpClient.delete<void>(url);
   }
 
-  public getProfilePicture(userCode: string): Observable<PictureBase64> {
+  public getProfilePicture(userCode: string): Observable<Base64ImageWrapper> {
     const url = `${this.backendUrl}${this.resourcePath}/${userCode}/picture`;
-    return this.httpClient.get<PictureBase64>(url);
+    return this.httpClient.get<Base64ImageWrapper>(url);
   }
 }

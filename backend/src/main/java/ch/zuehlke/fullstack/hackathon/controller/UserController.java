@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping("/{code}/picture")
-    public ResponseEntity<Picture> getUserProfilePicture(@PathVariable String code){
-        return ResponseEntity.ok(new Picture(userService.getProfilePictureOf(code)));
+    public ResponseEntity<Base64ImageWrapper> getUserProfilePicture(@PathVariable String code){
+        return ResponseEntity.ok(new Base64ImageWrapper(userService.getProfilePictureOf(code)));
     }
 
     @PostMapping("/{code}/interests")
