@@ -13,6 +13,9 @@ export class ManualInterestAddingComponent {
   @Input()
   allCategories!: Category[];
 
+  @Input()
+  writePermissions!: boolean;
+
   @Output()
   interestAdded = new EventEmitter();
 

@@ -27,10 +27,11 @@
   border: 1px solid black;
   border-radius: 1rem;
   padding: 0 0.2rem;
+  height: 24px;
 }
 
 .interest {
-  margin: 0 0.2rem 0 0.4rem;
+  margin: 0 0.4rem 0 0.4rem;
 }
 
 .big-title {
@@ -40,4 +41,8 @@
 .small-title {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+}
+
+.remove-interest {
+  margin-left: -0.2rem;
 }

@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   user!: User;
   allCategories!: Category[];
   profilePicturePath!: SafeResourceUrl;
+  writePermissions: boolean = false;
 
   constructor(private userProfileService: UserProfileService,
               private categoryService: CategoryService,
@@ -35,6 +36,9 @@ export class UserProfileComponent implements OnInit {
       if (!userCode) {
         userCode = this.user.code;
         this.router.navigate([`/user-profile/${userCode}`]);
+      }
+      if (this.user.code === userCode) {
+        this.writePermissions = true;
       }
       this.userProfileService.getUserByCode(userCode).subscribe(user => this.user = user);
       this.userProfileService.getProfilePicture(userCode).subscribe(base64ImageWrapper => {

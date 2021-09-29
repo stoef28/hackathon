@@ -11,6 +11,9 @@ export class UserCategoriesComponent implements OnInit {
   @Input()
   categories!: Category[];
 
+  @Input()
+  writePermissions!: boolean;
+
   @Output()
   interestRemoved = new EventEmitter<number>();
 
