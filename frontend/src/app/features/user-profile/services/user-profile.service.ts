@@ -30,4 +30,9 @@ export class UserProfileService {
     const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests/${id}`;
     return this.httpClient.delete<void>(url);
   }
+
+  public getProfilePicture(userCode: string): Observable<string> {
+    const url = `${this.backendUrl}${this.resourcePath}/${userCode}/picture`;
+    return this.httpClient.get<string>(url);
+  }
 }

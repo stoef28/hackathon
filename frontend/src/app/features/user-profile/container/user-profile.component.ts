@@ -6,6 +6,7 @@ import {CategoryService} from "@base/shared/services/category.service";
 import {AddInterestDto} from "@base/shared/models/add-interest-dto";
 import {InsightAddress} from "@base/shared/models/insight-address";
 import {Interest} from "@base/shared/models/interest";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
 	selector: "app-user-profile",
@@ -16,9 +17,11 @@ export class UserProfileComponent implements OnInit {
 
   user!: User;
   allCategories!: Category[];
+  profilePicturePath!: SafeResourceUrl;
 
   constructor(private userProfileService: UserProfileService,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -34,6 +37,9 @@ export class UserProfileComponent implements OnInit {
       ]
     )
     this.userProfileService.getUserByCode(this.user.code).subscribe(user => this.user = user);
+    this.userProfileService.getProfilePicture(this.user.code).subscribe(base64Image => {
+      this.profilePicturePath = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64Image);
+    });
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }
 
