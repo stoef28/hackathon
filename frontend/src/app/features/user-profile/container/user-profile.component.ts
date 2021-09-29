@@ -4,9 +4,9 @@ import {User} from "@base/shared/models/user";
 import {Category} from "@base/shared/models/category";
 import {CategoryService} from "@base/shared/services/category.service";
 import {AddInterestDto} from "@base/shared/models/add-interest-dto";
-import {InsightAddress} from "@base/shared/models/insight-address";
-import {Interest} from "@base/shared/models/interest";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SessionService} from "@base/features/user-profile/services/session.service";
 
 @Component({
 	selector: "app-user-profile",
@@ -21,25 +21,26 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userProfileService: UserProfileService,
               private categoryService: CategoryService,
-              private domSanitizer: DomSanitizer) {
+              private sessionService: SessionService,
+              private domSanitizer: DomSanitizer,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.user = new User(
-      "steb",
-      "Max",
-      "Mustermann",
-      1,
-      new InsightAddress("Musterstrasse 1", "8000", "Zuerich", "Schweiz"),
-      [
-        new Category(1, "Sports",[new Interest(1, "Soccer"), new Interest(2, "Tennis")]),
-        new Category(2, "Music",[new Interest(3, "Trumpet"), new Interest(4, "Trombone")])
-      ]
-    )
-    this.userProfileService.getUserByCode(this.user.code).subscribe(user => this.user = user);
-    this.userProfileService.getProfilePicture(this.user.code).subscribe(base64ImageWrapper => {
-      this.profilePicturePath = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64ImageWrapper.base64Image);
-    });
+    this.user = this.sessionService.getLoggedInUser();
+    let userCode;
+    this.route.params.subscribe(parameters => {
+      userCode = parameters.code;
+      if (!userCode) {
+        userCode = this.user.code;
+        this.router.navigate([`/user-profile/${userCode}`]);
+      }
+      this.userProfileService.getUserByCode(userCode).subscribe(user => this.user = user);
+      this.userProfileService.getProfilePicture(userCode).subscribe(base64ImageWrapper => {
+        this.profilePicturePath = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + base64ImageWrapper.base64Image);
+      });
+    })
     this.categoryService.getAllCategories().subscribe(allCategories => this.allCategories = allCategories);
   }
 
