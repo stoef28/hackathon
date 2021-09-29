@@ -1,8 +1,11 @@
 <div class="container">
-  <div class="user-display-container">
-    <img [src]="profilePicturePath" class="profile-picture">
-    <h1>{{user.firstName}} {{user.lastName}}</h1>
+  <mat-card>
+    <div class="user-display-container">
+      <img [src]="profilePicturePath" class="profile-picture">
+      <h1>{{user.firstName}} {{user.lastName}}</h1>
+    </div>
+    <app-user-categories [categories]="user.categories" [writePermissions]="writePermissions" (interestRemoved)="removeInterest($event)"></app-user-categories>
+  </mat-card>
+  <mat-card *ngIf="writePermissions"><app-manual-interest-adding [allCategories]="allCategories" [writePermissions]="writePermissions" (interestAdded)="addInterest($event)"></app-manual-interest-adding>
+  </mat-card>
   </div>
-  <app-user-categories [categories]="user.categories" [writePermissions]="writePermissions" (interestRemoved)="removeInterest($event)"></app-user-categories>
-  <app-manual-interest-adding [allCategories]="allCategories" [writePermissions]="writePermissions" (interestAdded)="addInterest($event)"></app-manual-interest-adding>
-</div>
