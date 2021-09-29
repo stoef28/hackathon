@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {FilterListPageComponent} from "@base/features/filter-list/components/filter-list-page/filter-list-page.component";
 
 export const routes: Routes = [
   {
@@ -13,7 +14,6 @@ export const routes: Routes = [
   },
   {
     path: "user-filter",
-    loadChildren: () =>
-      import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule)
+    component: FilterListPageComponent
   }
 ];
