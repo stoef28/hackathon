@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "@base/shared/models/user";
 
@@ -12,7 +12,14 @@ export class FilterService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAll() : Observable<any> {
-    return this.httpClient.get<User[]>(this.baseUrl);
+  public getAll(interests : string[], location: string) : Observable<any> {
+    let params = new HttpParams();
+    if (interests && interests?.length){
+      params = params.set('interests', interests?.join(','))
+    }
+    if (location){
+      params = params.set('location', location)
+    }
+    return this.httpClient.get<User[]>(this.baseUrl , {params : params});
   }
 }
