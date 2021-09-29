@@ -38,10 +38,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   addInterest(addInterest: AddInterestDto) {
-    this.userProfileService.addInterest(this.user.code, addInterest).subscribe(value => console.log(value));
+    this.userProfileService.addInterest(this.user.code, addInterest).subscribe(() => {});
+    window.location.reload();
   }
 
   removeInterest(id: number) {
-    this.userProfileService.removeInterest(this.user.code, id).subscribe(value => console.log(value));
+    this.userProfileService.removeInterest(this.user.code, id).subscribe(() => {});
+    window.location.reload();
   }
 }
