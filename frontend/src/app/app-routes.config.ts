@@ -13,7 +13,7 @@ export const routes: Routes = [
       import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule)
   },
   {
-    path: "filter-list",
+    path: "user-filter",
     component: FilterListPageComponent
   }
 ];
