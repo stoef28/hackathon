@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarModule} from "@base/features/navbar/navbar.module";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {FilterListModule} from "@base/features/filter-list/filter-list.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {NoopAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    NavbarModule
+    NavbarModule,
+    FilterListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
