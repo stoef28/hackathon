@@ -1,5 +1,8 @@
 <div>
-  <h1>{{user.firstName}} {{user.lastName}}</h1>
+  <div class="user-display-container">
+    <img [src]="profilePicturePath" class="profile-picture">
+    <h1>{{user.firstName}} {{user.lastName}}</h1>
+  </div>
   <app-user-categories [categories]="user.categories" (interestRemoved)="removeInterest($event)"></app-user-categories>
   <app-manual-interest-adding [allCategories]="allCategories" (interestAdded)="addInterest($event)"></app-manual-interest-adding>
 </div>

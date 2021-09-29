@@ -4,6 +4,7 @@ import {User} from "@base/shared/models/user";
 import {HttpClient} from "@angular/common/http";
 import {AddInterestDto} from "@base/shared/models/add-interest-dto";
 import {Interest} from "@base/shared/models/interest";
+import {Base64ImageWrapper} from "@base/features/user-profile/models/base64-image-wrapper";
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,10 @@ export class UserProfileService {
   public removeInterest(userCode: string, id: number): Observable<void> {
     const url = `${this.backendUrl}${this.resourcePath}/${userCode}/interests/${id}`;
     return this.httpClient.delete<void>(url);
+  }
+
+  public getProfilePicture(userCode: string): Observable<Base64ImageWrapper> {
+    const url = `${this.backendUrl}${this.resourcePath}/${userCode}/picture`;
+    return this.httpClient.get<Base64ImageWrapper>(url);
   }
 }

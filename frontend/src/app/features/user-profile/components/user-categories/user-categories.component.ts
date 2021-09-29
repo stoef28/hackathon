@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Category} from "@base/shared/models/category";
 
 @Component({
@@ -6,7 +6,7 @@ import {Category} from "@base/shared/models/category";
 	templateUrl: "./user-categories.component.html",
 	styleUrls: ["./user-categories.component.scss"]
 })
-export class UserCategoriesComponent {
+export class UserCategoriesComponent implements OnInit {
 
   @Input()
   categories!: Category[];
@@ -16,5 +16,14 @@ export class UserCategoriesComponent {
 
   removeInterest(id: number) {
     this.interestRemoved.emit(id);
+  }
+
+  ngOnInit(): void {
+    this.categories.sort((a, b) => {
+      if (a.name.toLowerCase() === 'andere') {
+        return 1;
+      }
+      return a.name > b.name ? 1 : -1;
+    });
   }
 }
